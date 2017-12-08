@@ -1,0 +1,116 @@
+.iframe-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 53.25%;
+    /* Ratio 16:9 ( 100%/16*9 = 56.25% ) */
+}
+
+.iframe-container > * {
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 0;
+    bottom: -30px;
+    left: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.iframe-container {
+    background: black;
+}
+
+body {
+    background-color: black;
+}
+
+html {
+    background-color: black;
+    margin-bottom: -10px;
+}
+
+#map {
+    height: 85vh;
+}
+
+
+/* The side navigation menu */
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.sidenav {
+    background-color: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.6);
+    color: rgba(0, 0, 0, 0.6);
+    width: 0;
+    /* 0 width - change this with JavaScript */
+    position: fixed;
+    /* Stay in place */
+    z-index: 9999;
+    /* Stay on top */
+    left: 0;
+    overflow-x: hidden;
+    /* Disable horizontal scroll */
+    padding-top: 50px;
+    /* Place content 60px from the top */
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    /* 0.5 second transition effect to slide in the sidenav */
+}
+
+
+/* The navigation menu links */
+
+.sidenav li a {
+    padding: 8px 8px 3px;
+    text-decoration: none;
+    font-size: 19px;
+    color: whitesmoke;
+    display: block;
+    font-weight: bold;
+    -webkit-transition: 0.5s;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+
+
+/* When you mouse over the navigation links, change their color */
+
+.sidenav li a:hover {
+    color: cornflowerblue;
+}
+
+
+/* Position and style the close button (top right corner) */
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+
+#main {
+    -webkit-transition: margin-left .5s;
+    transition: margin-left .5s;
+    padding: 20px;
+}
+
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
+}
