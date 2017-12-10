@@ -52,7 +52,7 @@ a {
     z-index: 9999;
     /* Stay on top */
     left: 1;
-    overflow-x:inherit;
+    overflow-x:hidden;
     /* Disable horizontal scroll */
     padding-top: 50px;
     /* Place content 60px from the top */
@@ -71,9 +71,10 @@ a {
     color: whitesmoke;
     display: block;
     font-weight: bold;
-    -webkit-transition: 0.5s;
+    -webkit-transition: s;
     -webkit-transition: 0.3s;
-    transition: 0.3s;
+    -webkit-transition: 0.7s;
+    transition: 0.7s;
 }
 
 
