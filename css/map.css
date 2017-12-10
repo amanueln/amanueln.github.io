@@ -51,8 +51,8 @@ a {
     /* Stay in place */
     z-index: 9999;
     /* Stay on top */
-    left: 0;
-    overflow-x: hidden;
+    left: 1;
+    overflow-x:inherit;
     /* Disable horizontal scroll */
     padding-top: 50px;
     /* Place content 60px from the top */
@@ -65,9 +65,9 @@ a {
 /* The navigation menu links */
 
 .sidenav li a {
-    padding: 8px 8px 3px;
+    padding: 8px 8px 3px 10px;
     text-decoration: none;
-    font-size: 19px;
+    font-size: 14px;
     color: whitesmoke;
     display: block;
     font-weight: bold;
@@ -80,7 +80,9 @@ a {
 /* When you mouse over the navigation links, change their color */
 
 .sidenav li a:hover {
-    color: cornflowerblue;
+    color: aqua;
+    padding: 12px 20px 12px 40px;
+    
 }
 
 
@@ -90,7 +92,7 @@ a {
     position: absolute;
     top: 0;
     right: 25px;
-    font-size: 36px;
+    font-size: 39px;
     margin-left: 50px;
 }
 
@@ -102,7 +104,30 @@ a {
     transition: margin-left .5s;
     padding: 20px;
 }
+/* search bar */
 
+input[type=text] {
+    width: 119px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 45px;
+    font-size: 14px;
+    background-color:white;
+    background-image: url('searchicon.png');
+    background-position: 18px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+    margin-left: 18px
+}
+
+input[type=text]:focus {
+    width: 100%;
+}
+
+/* end search bar */
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 
