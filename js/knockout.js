@@ -1,6 +1,5 @@
 function AppViewModel() {
-    var self = this;
-    self.people = ko.observableArray([
+    people = ko.observableArray([
         {
             title: 'Dun-Well Doughnuts'
             , position: {
@@ -23,15 +22,13 @@ function AppViewModel() {
             }
         }
     ]);
-    var saveMarker = [];
-    self.placeMarkers = function () {
-        var i = 0;
-        for (i; i < self.people.length; i++) {
-            var test = 'john'
-            saveMarker.push(test)
-            console.log(saveMarker);
-        }
+    var saveMarker = ['test', 'test1', 'test2'];
+    var putMarker = [];
+    for (var i = 0; i < people().length; i++) {
+        saveMarker.push(people()[i]);
+        
+        console.log(people()[i]);
     }
-    console.log(saveMarker);
+   console.log('put me here :' + saveMarker);
 }
 ko.applyBindings(new AppViewModel());

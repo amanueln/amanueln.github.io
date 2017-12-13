@@ -130,6 +130,66 @@ input[type=text]:focus {
 
 /* end search bar */
 
+
+
+
+
+/* start of list menu */
+.wrap {
+    margin: auto;
+    width: 320px;
+}
+
+.site-nav {
+    background: rgb(66,66,66);
+    border-bottom: 2px solid rgb(55,55,55);
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    display: block;
+    float: left;
+    margin: 0;
+    padding: 0 10px 10px 10px;
+    width: 100%;
+}
+
+.site-nav-wrap {
+    height: 75px;
+    float: left;
+    overflow: hidden;
+    width: 100%;
+}
+
+.site-nav-toggle {
+    background-color: rgb(200,200,200);
+    border-bottom-right-radius: 150px;
+    border-bottom-left-radius: 150px;
+    color: rgb(3,3,3);
+    clear: both;
+    cursor: pointer;
+    display: block;
+    height: 75px;
+    line-height: 75px;
+    margin: -20px auto 40px auto;
+    text-align: center;
+    -webkit-transition: color .5s ease;
+    transition: color .5s ease;
+    width: 150px;
+}
+
+.site-nav-toggle:hover {
+    background-color: rgb(3,3,3);
+    color: rgb(200,200,200);
+    -webkit-transition: color .5s ease;
+    transition: color .5s ease;
+}
+
+h1 { font-weight: bold; font-size: 24px; }
+
+li { margin-top: 10px; }
+
+
+/* end of list menu */
+
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 
 @media screen and (max-height: 450px) {
