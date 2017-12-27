@@ -24,14 +24,14 @@
                 <div class="row">
                     <form class="navbar-form navbar-left" role="search">
                         <div class="form-group">
-                            <input type="text" name="search" placeholder="Search.."> </div>
+                            <input type="text" data-bind="textInput : listInput "  placeholder="Search.."> </div>
                     </form>
                 </div>
                 <div class="row">
                     <hr>
-                    <ul class="text-uppercase" data-bind="foreach: people">
+                    <ul class="text-uppercase" id="list" data-bind="foreach: searchedNames">
                         <li>
-                            <a href="#" data-bind="text: title"></a>
+                            <a href="#" id="markerList" data-bind="text : title,click: $parent.setLoc"></a>
                         </li>
                     </ul>
                 </div>
@@ -40,7 +40,7 @@
         </div>
     </main>
     <!--    >Google Maps start</!-->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAShQoJ2iizrofRAlqgHZFzwJI1S3fB13I&callback=initMap">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAShQoJ2iizrofRAlqgHZFzwJI1S3fB13I&libraries=places&callback=initMap">
     </script>
     <script src="js/maps.js"></script>
     <!--    >Google Maps end</!-->
