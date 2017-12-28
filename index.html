@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Title Page</title>
+    <title>Nates POI</title>
     <link rel="stylesheet" href="css/map.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
@@ -19,7 +19,7 @@
 
 <body>
     <main class="iframe-container">
-        <div class="container-fluid"> <span class="test" style="font-size:35px; color:white;cursor:pointer" onclick="openNav()">&#9776;<strong class="text-uppercase" >places to eat</strong></span>
+        <div class="container-fluid"> <span class="test" style="font-size:35px; color:white;cursor:pointer" onclick="openNav()">&#9776;<strong class="text-uppercase" >places to go</strong></span>
             <div id="mySidenav" class="sidenav"> <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                 <div class="row">
                     <form class="navbar-form navbar-left" role="search">
@@ -31,7 +31,7 @@
                     <hr>
                     <ul class="text-uppercase" id="list" data-bind="foreach: searchedNames">
                         <li>
-                            <a href="#" id="markerList" data-bind="text : title,click: $parent.setLoc"></a>
+                            <a href="#" id="markerList" data-bind="text : title,click: infoList"></a>
                         </li>
                     </ul>
                 </div>
