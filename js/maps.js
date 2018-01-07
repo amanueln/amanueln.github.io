@@ -13,47 +13,96 @@ function initMap() {
     var MarkersInfowindow = new google.maps.InfoWindow();
     //main marker location
     var uluru = {
-        lat: 40.7214
-        , lng: -73.9621
+        lat: 40.7298
+        , lng: -73.9767
     };
     //creates map 
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 12
         , center: uluru
     });
+    //foursquare clientID & secret
+    var clientID = '2MOJGD2ZXSFWICVGMQUXESVOMQIRJ0IPAL3BB310XF4N1VJE';
+    var clientSecret = 'MQXUQS3HOYW4N1BTMA5AN3KM1TS2PDHPEQCW2T5RWGA2CN4V';
+    //end of foursquare credientials.
+    
     //for looping markers and placing them on map
+    //requests foursquare ulr to get venu and photos
     for (var i = 0; i < places().length; i++) {
-        var marker = new google.maps.Marker({
-            position: places()[i].location
-            , map: map
-            , title: places()[i].title
-            , animation: google.maps.Animation.DROP
-            , id: i
+        // get JSON request of foursquare data
+        var reqURL = 'https://api.foursquare.com/v2/venues/search?ll=' + places()[i].location.lat + ',' + places()[i].location.lng + '&client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20180803' + '&query=' + places()[i].title;
+        //after request is done
+        $.when($.getJSON(reqURL)).done(function (data1) {
+            //getting venue result
+            var results = data1.response.venues[0];
+            console.log(results);
+            //url for foursquare photos
+            var photoURL = 'https://api.foursquare.com/v2/venues/' + results.id + '/photos?&client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20180803';
+            // get JSON request of foursquare photos
+            $.getJSON(photoURL, function (photoData) {
+                //getting venue photo result
+                console.log(results.location.formattedAddress);
+                var photos = photoData.response.photos.items["0"].suffix;
+                //getting location from foursquare
+                var location = {
+                    lat: results.location.lat
+                    , lng: results.location.lng
+                };
+                //creating markers using foursquare data.
+                //for google maps
+                var marker = new google.maps.Marker({
+                    position: location
+                    , map: map
+                    , title: results.name
+                    , animation: google.maps.Animation.DROP
+                    , id: results.id
+                    , url: results.url
+                    , categories: results.categories
+                    , img:photos
+                    ,address: results.location.formattedAddress
+                    ,contact: results.contact.formattedPhone
+                    
+                    
+                });
+                // creats an event listener.
+                //loads infowindow for individual marker.
+                marker.addListener('click', function () {
+                    populateInfoWindow(this, MarkersInfowindow);
+                });
+                // places each marker into the markers array.
+                markers.push(marker);
+            });
+            //error handler for foursquare data gathering.
+        }).fail(function () {
+            alert('foursquare broke');
         });
-        // creats an event listener.
-        //loads infowindow for individual marker.
-        marker.addListener('click', function () {
-            populateInfoWindow(this, MarkersInfowindow);
-        });
-        // places each marker into the markers array.
-        markers.push(marker);
     }
     // This function populates the infowindow when the marker is clicked. We'll only allow
     // one infowindow which will open at the marker that is clicked, and populate based
     // on that markers position.
     function populateInfoWindow(marker, infowindow) {
-        //look of info infowindow
-        var contentString = '<div id="content">' + '<div id="siteNotice">' + '</div>' +  '<div id="bodyContent">' + '<p><b>' + marker.title  +'<div class="image">'+'<img src="https://mindsparklemag.com/wp-content/uploads/2016/08/Shade-Burger-YOD-studio-design-mindsparkle-mag-1.jpg" alt="" width="100" height="100">' +'</div>' + '<p>Url: <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">' + 'https://en.wikipedia.org/w/index.php?title=Uluru</a> ' + '</div>' + '</div>';
+        //url error handler
+        function urlerror() {
+            if (marker.url) {
+                return marker.url;
+            }
+            else {
+                return marker.url('link broken');
+            }
+        };
+        
+        //content of my marker infowindow.
+        var contentString = '<div id="content" class="text-center text-uppercase"><div id="siteNotice"></div><div id="bodyContent"><p><b>' + marker.title + '</p></b><div class="image">' + '<img src="https://igx.4sqi.net/img/general/300x300'+ marker.img +'" alt="" width="250" height="100">' + '</div>' + '<div><hr><strong>for info:'+marker.contact+'</strong></div><a href="' + urlerror() + '" target="_blank">' + urlerror() + '</div></div>';
+        
         // Check to make sure the infowindow is not already opened on this marker.
         if (infowindow.marker != marker) {
             infowindow.marker = marker;
-            console.log(infowindow.marker);
             infowindow.setContent(contentString);
             //set bounce animation on clicked marker.
             infowindow.marker.setAnimation(google.maps.Animation.BOUNCE);
             infowindow.open(map, marker);
             //zooms in to map when marker clicked
-            map.setZoom(17);
+            map.setZoom(16);
             map.getBounds(marker.getPosition());
             //centers map on marker
             //based on getting markers lat/long
@@ -68,12 +117,12 @@ function initMap() {
             });
         }
     }
-    
     //opens infowindow when list is clicked.
     infoList = function (clickedinfo) {
         populateInfoWindow(this, MarkersInfowindow);
     };
 }
+
 // knockout view model hold my data of places
 function AppViewModel() {
     places = ko.observableArray([
@@ -85,53 +134,54 @@ function AppViewModel() {
             }
         }
         , {
-            title: 'Chelsea Loft'
+            title: 'Empire State Building'
             , location: {
-                lat: 40.7444883
-                , lng: -73.9949465
+                lat: 40.748817
+                , lng: -73.985428
             }
         }
         , {
-            title: 'Union Square Open Floor Plan'
+            title: 'The Spotted Pig'
             , location: {
-                lat: 40.7347062
-                , lng: -73.9895759
+                lat: 40.7356
+                , lng: -74.0067
             }
         }
         , {
-            title: 'East Village Hip Studio'
+            title: 'central park zoo '
             , location: {
-                lat: 40.7281777
-                , lng: -73.984377
+                lat: 40.7678
+                , lng: -73.9718
             }
         }
         , {
-            title: 'TriBeCa Artsy Bachelor Pad'
+            title: 'Central Park'
             , location: {
-                lat: 40.7195264
-                , lng: -74.0089934
+                lat: 40.7829
+                , lng: -73.9654
             }
         }
         , {
-            title: 'Chinatown Homey Space'
+            title: 'times square '
             , location: {
-                lat: 40.7180628
-                , lng: -73.9961237
+                lat: 40.7589
+                , lng: -73.9851
             }
         }
 
 
-    ]), listInput = ko.observable('');
+    ]), 
+        
+    listInput = ko.observable('');
     searchedNames = ko.computed(function () {
         // Knockout tracks dependencies automatically. It knows that fullName depends on firstName and lastName, because these get called when evaluating fullName.
         var storeInput = listInput().toLowerCase();
         if (!storeInput) {
-            return ko.utils.arrayFilter(markers, function (item) {
+            ko.utils.arrayForEach(markers, function (item) {
                 //  when listInput is blank all markers visible(true)
-                var result = (item.title.toLowerCase().search(storeInput) >= 0)
-                item.setVisible(result);
-                return result;
+                item.setVisible(true);
             });
+            return markers;
         }
         else {
             return ko.utils.arrayFilter(markers, function (item) {
@@ -141,5 +191,5 @@ function AppViewModel() {
                 return result;
             });
         }
-    }, this);
+    });
 }
