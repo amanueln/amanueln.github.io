@@ -22,8 +22,8 @@ function initMap() {
         , center: uluru
     });
     //foursquare clientID & secret
-    var clientID = '2MOJGD2ZXSFWICVGMQUXESVOMQIRJ0IPAL3BB310XF4N1VJE';
-    var clientSecret = 'MQXUQS3HOYW4N1BTMA5AN3KM1TS2PDHPEQCW2T5RWGA2CN4V';
+    var clientID = 'LH33HAMSV5DNQWAJQLTNGJBF23EFGHIC0CMC5SMHELD3VA4Y';
+    var clientSecret = '4GZY5OVE2NLVEU2GPW2U5KFKCZLXG3YQMRVBZ4ZK5NTF35EQ';
     //end of foursquare credientials.
     //for looping markers and placing them on map
     //requests foursquare ulr to get venu and photos
@@ -96,7 +96,12 @@ function initMap() {
             }
         };
         //content of my marker infowindow.
+<<<<<<< HEAD
         var contentString = '<div id="content" class="text-center text-uppercase"><div id="siteNotice"></div><div id="bodyContent"><h3><b>' + marker.title + '</h3></b><div class="image">' + '<img src="https://igx.4sqi.net/img/general/300x300' + marker.img + '" alt="" width="300" height="300">' + '</div><div><hr><h5>' + marker.hours + '</h5></div><div><br><h5> Rated:<font color="'+ marker.ratingColor +'">' + marker.rating + '</font>/10</h5></div>' + '<div><hr></div><a href="' + urlerror() + '" target="_blank">' + urlerror() + '</div></div>';
+=======
+        var contentString = '<div id="content" class="text-center text-uppercase"><div id="siteNotice"></div><div id="bodyContent"><p><b>' + marker.title + '</p></b><div class="image">' + '<img src="https://igx.4sqi.net/img/general/300x300'+ marker.img +'" alt="" width="300" height="300">' + '</div>' + '<div><hr><strong>for info:'+marker.contact+'</strong></div><a href="' + urlerror() + '" target="_blank">' + urlerror() + '</div></div>';
+        
+>>>>>>> origin/master
         // Check to make sure the infowindow is not already opened on this marker.
         if (infowindow.marker != marker) {
             infowindow.marker = marker;
