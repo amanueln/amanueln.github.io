@@ -22,8 +22,8 @@ function initMap() {
         , center: uluru
     });
     //foursquare clientID & secret
-    var clientID = 'LH33HAMSV5DNQWAJQLTNGJBF23EFGHIC0CMC5SMHELD3VA4Y';
-    var clientSecret = '4GZY5OVE2NLVEU2GPW2U5KFKCZLXG3YQMRVBZ4ZK5NTF35EQ';
+    var clientID = '2MOJGD2ZXSFWICVGMQUXESVOMQIRJ0IPAL3BB310XF4N1VJE';
+    var clientSecret = 'MQXUQS3HOYW4N1BTMA5AN3KM1TS2PDHPEQCW2T5RWGA2CN4V';
     //end of foursquare credientials.
     //for looping markers and placing them on map
     //requests foursquare ulr to get venu and photos
