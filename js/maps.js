@@ -171,6 +171,13 @@ function AppViewModel() {
                     , lng: -73.9851
                 }
         }
+        , {
+                title: 'Museum of Modern Art'
+                , location: {
+                    lat: 40.7614
+                    , lng: -73.9776
+                }
+        }
 
 
     ])
