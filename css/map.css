@@ -184,9 +184,17 @@ input[type=text]:focus {
 }
 
 h1 { font-weight: bold; font-size: 24px; }
+img {
+    width: 100%;
+    height: auto;
+    border-radius: 25px;
+}
 
-li { margin-top: 10px; }
-
+.h5, h5 {
+    font-size: 15px;
+    font-weight: bold;
+    font-style: oblique;
+}
 
 /* end of list menu */
 

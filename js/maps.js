@@ -2,6 +2,23 @@
 var markers = [];
 // initilize google maps.
 function initMap() {
+    window.onerror = function (msg, url, lineNo, columnNo, error) {
+        var string = msg.toLowerCase();
+        var substring = "script error";
+        if (string.indexOf(substring) > -1) {
+            alert('Script Error: See Browser Console for Detail');
+        }
+        else {
+            var message = [
+            'Message: ' + msg
+            , 'Line: ' + lineNo
+            , 'Column: ' + columnNo
+        , ].join(' - ');
+            //        alert(message);
+            document.getElementById("alert").innerHTML = message;
+        }
+        return false;
+    };
     //applys the knockout to run in map.
     ko.applyBindings(new AppViewModel());
     // even listener that adjusts center of map
@@ -27,7 +44,7 @@ function initMap() {
     //end of foursquare credientials.
     //for looping markers and placing them on map
     //requests foursquare ulr to get venu and photos
-       for (var i = 0; i < places().length; i++) {
+    for (var i = 0; i < places().length; i++) {
         // get JSON request of foursquare data
         var reqURL = 'https://api.foursquare.com/v2/venues/search?ll=' + places()[i].location.lat + ',' + places()[i].location.lng + '&client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20180803' + '&query=' + places()[i].title;
         //after request is done
@@ -41,12 +58,9 @@ function initMap() {
             $.when($.getJSON(infoURL)).done(function (infoData) {
                 //foursquare request info
                 var info = infoData;
-                console.log(info);
-                
                 //venu photo
                 var photos = info.response.venue.bestPhoto.suffix
-                
-                //getting location from foursquare
+                    //getting location from foursquare
                 var location = {
                     lat: results.location.lat
                     , lng: results.location.lng
@@ -57,7 +71,7 @@ function initMap() {
                     position: location
                     , map: map
                     , title: results.name
-                    ,description:info.response.venue.description
+                    , description: info.response.venue.description
                     , animation: google.maps.Animation.DROP
                     , id: results.id
                     , url: info.response.venue.url
@@ -66,8 +80,8 @@ function initMap() {
                     , address: results.location.formattedAddress
                     , contact: info.response.venue.contact.formattedPhone
                     , hours: info.response.venue.hours.status
-                    , rating:info.response.venue.rating
-                    ,ratingColor:info.response.venue.ratingColor
+                    , rating: info.response.venue.rating
+                    , ratingColor: info.response.venue.ratingColor
                 });
                 // creats an event listener.
                 //loads infowindow for individual marker.
@@ -76,10 +90,10 @@ function initMap() {
                 });
                 // places each marker into the markers array.
                 markers.push(marker);
-         });
+            });
             //error handler for foursquare data gathering.
         }).fail(function () {
-            alert('foursquare broke');
+            alert('FOURSQUARE BROKE: TOO MANY API CALLS. WAIT 24 HOURS');
         });
     }
     // This function populates the infowindow when the marker is clicked. We'll only allow
@@ -96,10 +110,9 @@ function initMap() {
             }
         };
         //content of my marker infowindow.
-        
-        var contentString = '<div id="content" class="text-center text-uppercase"><div id="siteNotice"></div><div id="bodyContent"><h3><b>' + marker.title + '</h3></b><div class="image">' + '<img src="https://igx.4sqi.net/img/general/300x300' + marker.img + '" alt="" width="300" height="300">' + '</div><div><hr><h5>' + marker.hours + '</h5></div><div><br><h5> Rated:<font color="'+ marker.ratingColor +'">' + marker.rating + '</font>/10</h5></div>' + '<div><hr></div><a href="' + urlerror() + '" target="_blank">' + urlerror() + '</div></div>';
+        var contentString = '<div id="content" class="text-center text-uppercase"><div id="siteNotice"></div><div id="bodyContent"><h3><b>' + marker.title + '</h3></b><div class="image">' + '<img src="https://igx.4sqi.net/img/general/300x300' + marker.img + '" alt="" width="300" height="300">' + '</div><div><hr><p>Venue hours:</p><h5>' + marker.hours + '</h5></div><div><br><p>Rated:</p><h5><font color="' + marker.ratingColor + '">' + marker.rating + '</font>/10</h5><hr></div>' + '<div><p>for more information visit:</p></div><a href="' + urlerror() + '" target="_blank">' + urlerror() + '</div></div>';
         // Check to make sure the infowindow is not already opened on this marker.
-        if (infowindow.marker != marker) {
+        if (marker) {
             infowindow.marker = marker;
             infowindow.setContent(contentString);
             //set bounce animation on clicked marker.
@@ -129,47 +142,54 @@ function initMap() {
 // knockout view model hold my data of places
 function AppViewModel() {
     places = ko.observableArray([
-            {
-                title: 'Dun-Well Doughnuts'
-                , location: {
-                    lat: 40.707365
-                    , lng: -73.940256
-                }
+        {
+            title: 'Dun-Well Doughnuts'
+            , location: {
+                lat: 40.707365
+                , lng: -73.940256
+            }
         }
         , {
-                title: 'Empire State Building'
-                , location: {
-                    lat: 40.748817
-                    , lng: -73.985428
-                }
+            title: 'Empire State Building'
+            , location: {
+                lat: 40.748817
+                , lng: -73.985428
+            }
         }
         , {
-                title: 'The Spotted Pig'
-                , location: {
-                    lat: 40.7356
-                    , lng: -74.0067
-                }
+            title: 'The Spotted Pig'
+            , location: {
+                lat: 40.7356
+                , lng: -74.0067
+            }
         }
         , {
-                title: 'central park zoo '
-                , location: {
-                    lat: 40.7678
-                    , lng: -73.9718
-                }
+            title: 'central park zoo '
+            , location: {
+                lat: 40.7678
+                , lng: -73.9718
+            }
         }
         , {
-                title: 'Central Park'
-                , location: {
-                    lat: 40.7829
-                    , lng: -73.9654
-                }
+            title: 'Central Park'
+            , location: {
+                lat: 40.7829
+                , lng: -73.9654
+            }
         }
         , {
-                title: 'times square '
-                , location: {
-                    lat: 40.7589
-                    , lng: -73.9851
-                }
+            title: 'times square'
+            , location: {
+                lat: 40.7589
+                , lng: -73.9851
+            }
+        }
+        , {
+            title: 'Museum of Modern Art'
+            , location: {
+                lat: 40.7614
+                , lng: -73.9776
+            }
         }
         , {
                 title: 'Museum of Modern Art'
@@ -180,11 +200,11 @@ function AppViewModel() {
         }
 
 
-    ])
-        , listInput = ko.observable('');
+    ]), listInput = ko.observable('');
     searchedNames = ko.computed(function () {
-        // Knockout tracks dependencies automatically. It knows that fullName depends on firstName and lastName, because these get called when evaluating fullName.
+        // filters markers/list
         var storeInput = listInput().toLowerCase();
+        console.log(storeInput);
         if (!storeInput) {
             ko.utils.arrayForEach(markers, function (item) {
                 //  when listInput is blank all markers visible(true)
