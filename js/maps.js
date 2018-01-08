@@ -25,7 +25,6 @@ function initMap() {
     var clientID = '2MOJGD2ZXSFWICVGMQUXESVOMQIRJ0IPAL3BB310XF4N1VJE';
     var clientSecret = 'MQXUQS3HOYW4N1BTMA5AN3KM1TS2PDHPEQCW2T5RWGA2CN4V';
     //end of foursquare credientials.
-    
     //for looping markers and placing them on map
     //requests foursquare ulr to get venu and photos
     for (var i = 0; i < places().length; i++) {
@@ -34,15 +33,19 @@ function initMap() {
         //after request is done
         $.when($.getJSON(reqURL)).done(function (data1) {
             //getting venue result
+            //collect venuid 
             var results = data1.response.venues[0];
-            console.log(results);
-            //url for foursquare photos
-            var photoURL = 'https://api.foursquare.com/v2/venues/' + results.id + '/photos?&client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20180803';
-            // get JSON request of foursquare photos
-            $.getJSON(photoURL, function (photoData) {
-                //getting venue photo result
-                console.log(results.location.formattedAddress);
-                var photos = photoData.response.photos.items["0"].suffix;
+            //url for foursquare marker info
+            var infoURL = 'https://api.foursquare.com/v2/venues/' + results.id + '?&client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20180803';
+            // get JSON request of foursquare venu info
+            $.when($.getJSON(infoURL)).done(function (infoData) {
+                //foursquare request info
+                var info = infoData;
+                console.log(info);
+                
+                //venu photo
+                var photos = info.response.venue.bestPhoto.suffix
+                
                 //getting location from foursquare
                 var location = {
                     lat: results.location.lat
@@ -54,15 +57,17 @@ function initMap() {
                     position: location
                     , map: map
                     , title: results.name
+                    ,description:info.response.venue.description
                     , animation: google.maps.Animation.DROP
                     , id: results.id
-                    , url: results.url
-                    , categories: results.categories
-                    , img:photos
-                    ,address: results.location.formattedAddress
-                    ,contact: results.contact.formattedPhone
-                    
-                    
+                    , url: info.response.venue.url
+                    , categories: info.response.venue.categories["0"]
+                    , img: photos
+                    , address: results.location.formattedAddress
+                    , contact: info.response.venue.contact.formattedPhone
+                    , hours: info.response.venue.hours.status
+                    , rating:info.response.venue.rating
+                    ,ratingColor:info.response.venue.ratingColor
                 });
                 // creats an event listener.
                 //loads infowindow for individual marker.
@@ -71,7 +76,7 @@ function initMap() {
                 });
                 // places each marker into the markers array.
                 markers.push(marker);
-            });
+         });
             //error handler for foursquare data gathering.
         }).fail(function () {
             alert('foursquare broke');
@@ -90,10 +95,8 @@ function initMap() {
                 return marker.url('link broken');
             }
         };
-        
         //content of my marker infowindow.
-        var contentString = '<div id="content" class="text-center text-uppercase"><div id="siteNotice"></div><div id="bodyContent"><p><b>' + marker.title + '</p></b><div class="image">' + '<img src="https://igx.4sqi.net/img/general/300x300'+ marker.img +'" alt="" width="250" height="100">' + '</div>' + '<div><hr><strong>for info:'+marker.contact+'</strong></div><a href="' + urlerror() + '" target="_blank">' + urlerror() + '</div></div>';
-        
+        var contentString = '<div id="content" class="text-center text-uppercase"><div id="siteNotice"></div><div id="bodyContent"><h3><b>' + marker.title + '</h3></b><div class="image">' + '<img src="https://igx.4sqi.net/img/general/300x300' + marker.img + '" alt="" width="300" height="300">' + '</div><div><hr><h5>' + marker.hours + '</h5></div><div><br><h5> Rated:<font color="'+ marker.ratingColor +'">' + marker.rating + '</font>/10</h5></div>' + '<div><hr></div><a href="' + urlerror() + '" target="_blank">' + urlerror() + '</div></div>';
         // Check to make sure the infowindow is not already opened on this marker.
         if (infowindow.marker != marker) {
             infowindow.marker = marker;
@@ -122,57 +125,55 @@ function initMap() {
         populateInfoWindow(this, MarkersInfowindow);
     };
 }
-
 // knockout view model hold my data of places
 function AppViewModel() {
     places = ko.observableArray([
-        {
-            title: 'Dun-Well Doughnuts'
-            , location: {
-                lat: 40.707365
-                , lng: -73.940256
-            }
+            {
+                title: 'Dun-Well Doughnuts'
+                , location: {
+                    lat: 40.707365
+                    , lng: -73.940256
+                }
         }
         , {
-            title: 'Empire State Building'
-            , location: {
-                lat: 40.748817
-                , lng: -73.985428
-            }
+                title: 'Empire State Building'
+                , location: {
+                    lat: 40.748817
+                    , lng: -73.985428
+                }
         }
         , {
-            title: 'The Spotted Pig'
-            , location: {
-                lat: 40.7356
-                , lng: -74.0067
-            }
+                title: 'The Spotted Pig'
+                , location: {
+                    lat: 40.7356
+                    , lng: -74.0067
+                }
         }
         , {
-            title: 'central park zoo '
-            , location: {
-                lat: 40.7678
-                , lng: -73.9718
-            }
+                title: 'central park zoo '
+                , location: {
+                    lat: 40.7678
+                    , lng: -73.9718
+                }
         }
         , {
-            title: 'Central Park'
-            , location: {
-                lat: 40.7829
-                , lng: -73.9654
-            }
+                title: 'Central Park'
+                , location: {
+                    lat: 40.7829
+                    , lng: -73.9654
+                }
         }
         , {
-            title: 'times square '
-            , location: {
-                lat: 40.7589
-                , lng: -73.9851
-            }
+                title: 'times square '
+                , location: {
+                    lat: 40.7589
+                    , lng: -73.9851
+                }
         }
 
 
-    ]), 
-        
-    listInput = ko.observable('');
+    ])
+        , listInput = ko.observable('');
     searchedNames = ko.computed(function () {
         // Knockout tracks dependencies automatically. It knows that fullName depends on firstName and lastName, because these get called when evaluating fullName.
         var storeInput = listInput().toLowerCase();
