@@ -110,7 +110,7 @@ function initMap() {
             }
         };
         //content of my marker infowindow.
-        var contentString = '<div id="content" class="text-center text-uppercase"><div id="siteNotice"></div><div id="bodyContent"><h3><b>' + marker.title + '</h3></b><div class="image">' + '<img src="https://igx.4sqi.net/img/general/300x300' + marker.img + '" alt="" width="300" height="300">' + '</div><div><hr><p>Venue hours:</p><h5>' + marker.hours + '</h5></div><div><br><p>Rated:</p><h5><font color="' + marker.ratingColor + '">' + marker.rating + '</font>/10</h5><hr></div>' + '<div><p>for more information visit:</p></div><a href="' + urlerror() + '" target="_blank">' + urlerror() + '</div></div>';
+        var contentString = '<div id="content" class="text-center text-uppercase"><div id="siteNotice"></div><div id="bodyContent"><h4><b>' + marker.title + '</h4></b><div class="image">' + '<img src="https://igx.4sqi.net/img/general/300x300' + marker.img + '" alt="" width="300" height="300">' + '</div><div><hr><p>Venue hours:</p><h5>' + marker.hours + '</h5></div><div><br><p>Rated:</p><h5><font color="' + marker.ratingColor + '">' + marker.rating + '</font>/10</h5><hr></div>' + '<div><p>for more information visit:</p></div><a href="' + urlerror() + '" target="_blank">' + urlerror() + '</div></div>';
         // Check to make sure the infowindow is not already opened on this marker.
         if (marker) {
             infowindow.marker = marker;
