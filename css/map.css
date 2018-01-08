@@ -185,7 +185,7 @@ input[type=text]:focus {
 
 h1 { font-weight: bold; font-size: 24px; }
 img {
-    width: 100%;
+    width: 50%;
     height: auto;
     border-radius: 25px;
 }
