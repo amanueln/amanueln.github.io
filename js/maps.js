@@ -33,18 +33,31 @@ function initMap() {
         //after request is done
         $.when($.getJSON(reqURL)).done(function (data1) {
             //getting venue result
-            //collect venuid 
             var results = data1.response.venues[0];
             //url for foursquare marker info
             var infoURL = 'https://api.foursquare.com/v2/venues/' + results.id + '?&client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20180803';
-            // get JSON request of foursquare venu info
+            // get JSON request of foursquare photos
             $.when($.getJSON(infoURL)).done(function (infoData) {
-                //foursquare request info
                 var info = infoData;
                 console.log(info);
-                
-                //venu photo
                 var photos = info.response.venue.bestPhoto.suffix
+                
+            
+//                
+//                function hours_am_pm(time) {
+//                    console.log(time)
+//                    var hours = time[0] + time[1];
+//                    var min = time[2] + time[3];
+//                    if (hours > 12) {
+//                        hours = hours - 12;
+//                        hours = (hours.length < 10) ? '0' + hours : hours;
+//                        return time[0] + ':' + min + ' PM';
+//                        return 0 + hours + ':' + min + ' AM';
+//                    }
+//                    else {
+//                        return time[1] + ':' + min + ' AM';
+//                    }
+//                }
                 
                 //getting location from foursquare
                 var location = {
@@ -67,7 +80,6 @@ function initMap() {
                     , contact: info.response.venue.contact.formattedPhone
                     , hours: info.response.venue.hours.status
                     , rating:info.response.venue.rating
-                    ,ratingColor:info.response.venue.ratingColor
                 });
                 // creats an event listener.
                 //loads infowindow for individual marker.
@@ -96,12 +108,7 @@ function initMap() {
             }
         };
         //content of my marker infowindow.
-<<<<<<< HEAD
-        var contentString = '<div id="content" class="text-center text-uppercase"><div id="siteNotice"></div><div id="bodyContent"><h3><b>' + marker.title + '</h3></b><div class="image">' + '<img src="https://igx.4sqi.net/img/general/300x300' + marker.img + '" alt="" width="300" height="300">' + '</div><div><hr><h5>' + marker.hours + '</h5></div><div><br><h5> Rated:<font color="'+ marker.ratingColor +'">' + marker.rating + '</font>/10</h5></div>' + '<div><hr></div><a href="' + urlerror() + '" target="_blank">' + urlerror() + '</div></div>';
-=======
-        var contentString = '<div id="content" class="text-center text-uppercase"><div id="siteNotice"></div><div id="bodyContent"><p><b>' + marker.title + '</p></b><div class="image">' + '<img src="https://igx.4sqi.net/img/general/300x300'+ marker.img +'" alt="" width="300" height="300">' + '</div>' + '<div><hr><strong>for info:'+marker.contact+'</strong></div><a href="' + urlerror() + '" target="_blank">' + urlerror() + '</div></div>';
-        
->>>>>>> origin/master
+        var contentString = '<div id="content" class="text-center text-uppercase"><div id="siteNotice"></div><div id="bodyContent"><p><b>' + marker.title + '</p></b><div class="image">' + '<img src="https://igx.4sqi.net/img/general/300x300' + marker.img + '" alt="" width="300" height="300">' + '</div><div><stong>'+marker.hours+'</stong></div>' + '<div><hr><strong>' + marker.rating + '</strong></div><a href="' + urlerror() + '" target="_blank">' + urlerror() + '</div></div>';
         // Check to make sure the infowindow is not already opened on this marker.
         if (infowindow.marker != marker) {
             infowindow.marker = marker;
