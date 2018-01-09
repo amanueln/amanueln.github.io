@@ -1,7 +1,7 @@
 // storage for all map markers created.
 var markers = [];
 // initilize google maps.
-function initMap() {
+function initMap() { 
     window.onerror = function (msg, url, lineNo, columnNo, error) {
         var string = msg.toLowerCase();
         var substring = "script error";
@@ -39,8 +39,8 @@ function initMap() {
         , center: uluru
     });
     //foursquare clientID & secret
-    var clientID = 'SCEXRTSWENBSVHEM212L5II2K4DZOL00GYKFBK1DT2CAGBBF';
-    var clientSecret = '5HSD0HPPXMSDUZBKFE1ZCJU31J4C1XCRM5A3D5JGDOIIXKPL';
+    var clientID = 'LH33HAMSV5DNQWAJQLTNGJBF23EFGHIC0CMC5SMHELD3VA4Y';
+    var clientSecret = '4GZY5OVE2NLVEU2GPW2U5KFKCZLXG3YQMRVBZ4ZK5NTF35EQ';
     //end of foursquare credientials.
     //for looping markers and placing them on map
     //requests foursquare ulr to get venu and photos
@@ -93,24 +93,15 @@ function initMap() {
             });
             //error handler for foursquare data gathering.
         }).fail(function () {
-            alert('FOURSQUARE BROKE: TOO MANY API CALLS. WAIT 24 HOURS');
+            alert('FOURSQUARE BROKE: ISSUE WITH API REQUEST');
         });
     }
     // This function populates the infowindow when the marker is clicked. We'll only allow
     // one infowindow which will open at the marker that is clicked, and populate based
     // on that markers position.
     function populateInfoWindow(marker, infowindow) {
-        //url error handler
-        function urlerror() {
-            if (marker.url) {
-                return marker.url;
-            }
-            else {
-                return marker.url('link broken');
-            }
-        };
         //content of my marker infowindow.
-        var contentString = '<div id="content" class="text-center text-uppercase"><div id="siteNotice"></div><div id="bodyContent"><h4><b>' + marker.title + '</h4></b><div class="image">' + '<img src="https://igx.4sqi.net/img/general/300x300' + marker.img + '" alt="" width="300" height="300">' + '</div><div><hr><p>Venue hours:</p><h5>' + marker.hours + '</h5></div><div><br><p>Rated:</p><h5><font color="' + marker.ratingColor + '">' + marker.rating + '</font>/10</h5><hr></div>' + '<div><p>for more information visit:</p></div><a href="' + urlerror() + '" target="_blank">' + urlerror() + '</div></div>';
+        var contentString = '<div id="content" class="text-center text-uppercase"><div id="siteNotice"></div><div id="bodyContent"><h4><b>' + marker.title + '</h4></b><div id="venueImg" class="image">' + '<img src="https://igx.4sqi.net/img/general/300x300' + marker.img + '" alt=""' + '</div><div><hr><p>Venue hours:</p><h5>' + marker.hours + '</h5></div><div><br><p>Rated:</p><h5><font color="' + marker.ratingColor + '">' + marker.rating + '</font>/10</h5><hr></div>' + '<div><p>for more information visit:</p></div><a href="' + marker.url + '" target="_blank">' + marker.url + '</div></div>';
         // Check to make sure the infowindow is not already opened on this marker.
         if (marker) {
             infowindow.marker = marker;
@@ -120,10 +111,10 @@ function initMap() {
             infowindow.open(map, marker);
             //zooms in to map when marker clicked
             map.setZoom(16);
-            map.getBounds(marker.getPosition());
+            map.getBounds(infowindow.marker.getPosition());
             //centers map on marker
             //based on getting markers lat/long
-            map.setCenter(marker.getPosition());
+            map.setCenter(infowindow.marker.getPosition());
             // Make sure the marker property is cleared if the infowindow is closed.
             infowindow.addListener('closeclick', function () {
                 infowindow.setMarker = null;
@@ -190,13 +181,6 @@ function AppViewModel() {
                 lat: 40.7614
                 , lng: -73.9776
             }
-        }
-        , {
-                title: 'Museum of Modern Art'
-                , location: {
-                    lat: 40.7614
-                    , lng: -73.9776
-                }
         }
 
 
