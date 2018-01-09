@@ -192,6 +192,10 @@ input[type=text]:focus {
 h1 { font-weight: bold; font-size: 24px; }
 img {
     width: 50%;
+<<<<<<< HEAD
+=======
+    height: auto;
+>>>>>>> origin/master
     border-radius: 25px;
 }
 
