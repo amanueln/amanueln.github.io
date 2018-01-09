@@ -112,10 +112,6 @@ function initMap() {
             infowindow.open(map, marker);
             //zooms in to map when marker clicked
             map.setZoom(16);
-<<<<<<< HEAD
-=======
-            map.getBounds(infowindow.marker.getPosition());
->>>>>>> origin/master
             //centers map on marker
             //based on getting markers lat/long
             map.setCenter(infowindow.marker.getPosition());
