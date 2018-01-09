@@ -33,12 +33,18 @@ html {
     height: 85vh;
 }
 
+.gm-style-iw {
+  width: 200px !important;
+  
+}
+
 
 /* The side navigation menu */
 
 a {
     color: #ffffff;
     text-decoration: none;
+    font-size: 10px;
 }
 
 .sidenav {
@@ -185,8 +191,7 @@ input[type=text]:focus {
 
 h1 { font-weight: bold; font-size: 24px; }
 img {
-    width: 100%;
-    height: auto;
+    width: 50%;
     border-radius: 25px;
 }
 
@@ -200,7 +205,7 @@ img {
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 
-@media screen and (max-height: 450px) {
+@media screen and (max-height: 360px) {
     .sidenav {
         padding-top: 15px;
     }
