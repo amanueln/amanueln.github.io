@@ -10,10 +10,10 @@ function initMap() {
         }
         else {
             var message = [
-            'Message: ' + msg
-            , 'Line: ' + lineNo
-            , 'Column: ' + columnNo
-        , ].join(' - ');
+            'Message: ' + msg, 
+            'Line: ' + lineNo, 
+            'Column: ' + columnNo, 
+            ].join(' - ');
             //        alert(message);
             document.getElementById("alert").innerHTML = message;
         }
@@ -30,8 +30,8 @@ function initMap() {
     var MarkersInfowindow = new google.maps.InfoWindow();
     //main marker location
     var uluru = {
-        lat: 40.7298
-        , lng: -73.9767
+        lat: 40.7298, 
+        lng: -73.9767
     };
     //creates map 
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -59,29 +59,29 @@ function initMap() {
                 //foursquare request info
                 var info = infoData;
                 //venu photo
-                var photos = info.response.venue.bestPhoto.suffix
+                var photos = info.response.venue.bestPhoto.suffix;
                     //getting location from foursquare
                 var location = {
-                    lat: results.location.lat
-                    , lng: results.location.lng
+                    lat: results.location.lat, 
+                    lng: results.location.lng
                 };
                 //creating markers using foursquare data.
                 //for google maps
                 var marker = new google.maps.Marker({
-                    position: location
-                    , map: map
-                    , title: results.name
-                    , description: info.response.venue.description
-                    , animation: google.maps.Animation.DROP
-                    , id: results.id
-                    , url: info.response.venue.url
-                    , categories: info.response.venue.categories["0"]
-                    , img: photos
-                    , address: results.location.formattedAddress
-                    , contact: info.response.venue.contact.formattedPhone
-                    , hours: info.response.venue.hours.status
-                    , rating: info.response.venue.rating
-                    , ratingColor: info.response.venue.ratingColor
+                    position: location, 
+                    map: map, 
+                    title: results.name, 
+                    description: info.response.venue.description, 
+                    animation: google.maps.Animation.DROP, 
+                    id: results.id, 
+                    url: info.response.venue.url, 
+                    categories: info.response.venue.categories["0"], 
+                    img: photos, 
+                    address: results.location.formattedAddress, 
+                    contact: info.response.venue.contact.formattedPhone, 
+                    hours: info.response.venue.hours.status, 
+                    rating: info.response.venue.rating, 
+                    ratingColor: info.response.venue.ratingColor
                 });
                 // creats an event listener.
                 //loads infowindow for individual marker.
@@ -134,52 +134,52 @@ function initMap() {
 function AppViewModel() {
     places = ko.observableArray([
         {
-            title: 'Dun-Well Doughnuts'
-            , location: {
-                lat: 40.707365
-                , lng: -73.940256
+            title: 'Dun-Well Doughnuts', 
+            location: {
+                lat: 40.707365, 
+                lng: -73.940256
             }
-        }
-        , {
-            title: 'Empire State Building'
-            , location: {
-                lat: 40.748817
-                , lng: -73.985428
+        }, 
+        {
+            title: 'Empire State Building', 
+            location: {
+                lat: 40.748817, 
+                lng: -73.985428
             }
-        }
-        , {
-            title: 'The Spotted Pig'
-            , location: {
-                lat: 40.7356
-                , lng: -74.0067
+        }, 
+        {
+            title: 'The Spotted Pig', 
+            location: {
+                lat: 40.7356, 
+                lng: -74.0067
             }
-        }
-        , {
-            title: 'central park zoo '
-            , location: {
-                lat: 40.7678
-                , lng: -73.9718
+        }, 
+        {
+            title: 'central park zoo ', 
+            location: {
+                lat: 40.7678, 
+                lng: -73.9718
             }
-        }
-        , {
-            title: 'Central Park'
-            , location: {
-                lat: 40.7829
-                , lng: -73.9654
+        }, 
+        {
+            title: 'Central Park', 
+            location: {
+                lat: 40.7829, 
+                lng: -73.9654
             }
-        }
-        , {
-            title: 'times square'
-            , location: {
-                lat: 40.7589
-                , lng: -73.9851
+        }, 
+        {
+            title: 'times square', 
+            location: {
+                lat: 40.7589, 
+                lng: -73.9851
             }
-        }
-        , {
-            title: 'Museum of Modern Art'
-            , location: {
-                lat: 40.7614
-                , lng: -73.9776
+        }, 
+        {
+            title: 'Museum of Modern Art', 
+            location: {
+                lat: 40.7614, 
+                lng: -73.9776
             }
         }
 
@@ -199,7 +199,7 @@ function AppViewModel() {
         else {
             return ko.utils.arrayFilter(markers, function (item) {
                 // set all markers visible based on result
-                var result = (item.title.toLowerCase().search(storeInput) >= 0)
+                var result = (item.title.toLowerCase().search(storeInput) >= 0);
                 item.setVisible(result);
                 return result;
             });
