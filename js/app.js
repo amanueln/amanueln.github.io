@@ -97,7 +97,7 @@ function initMap() {
         }).fail(function () {
             alert('FOURSQUARE BROKE: ISSUE WITH API REQUEST');
         });  
-    };
+    }
     
     for (var i = 0; i < places().length; i++) {
         loadJson(places());
