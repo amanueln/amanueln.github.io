@@ -1,0 +1,215 @@
+.iframe-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 53.25%;
+    /* Ratio 16:9 ( 100%/16*9 = 56.25% ) */
+}
+
+.iframe-container > * {
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 0;
+    bottom: -30px;
+    left: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.iframe-container {
+    background: black;
+}
+
+body {
+    background-color: black;
+}
+
+html {
+    background-color: black;
+    margin-bottom: -10px;
+}
+
+#map {
+    height: 85vh;
+}
+
+.gm-style-iw {
+  width: 200px !important;
+  
+}
+
+
+/* The side navigation menu */
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 10px;
+}
+
+.sidenav {
+    background-color: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.6);
+    color: rgba(0, 0, 0, 0.6);
+    width: 0;
+    /* 0 width - change this with JavaScript */
+    position: fixed;
+    /* Stay in place */
+    z-index: 9999;
+    /* Stay on top */
+    left: 1;
+    overflow-x:hidden;
+    /* Disable horizontal scroll */
+    padding-top: 50px;
+    /* Place content 60px from the top */
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    /* 0.5 second transition effect to slide in the sidenav */
+}
+
+
+/* The navigation menu links */
+
+.sidenav li a {
+    padding: 8px 8px 3px 10px;
+    text-decoration: none;
+    font-size: 14px;
+    color: whitesmoke;
+    display: block;
+    font-weight: bold;
+    -webkit-transition: s;
+    -webkit-transition: 0.3s;
+    -webkit-transition: 0.7s;
+    transition: 0.7s;
+}
+
+
+/* When you mouse over the navigation links, change their color */
+
+.sidenav li a:hover {
+    color: aqua;
+    padding: 12px 20px 12px 40px;
+    
+}
+
+
+/* Position and style the close button (top right corner) */
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 39px;
+    margin-left: 50px;
+}
+
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+
+#main {
+    -webkit-transition: margin-left .5s;
+    transition: margin-left .5s;
+    padding: 20px;
+}
+/* search bar */
+
+input[type=text] {
+    width: 119px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    font-size: 12px;
+    background-color:white;
+    background-image: url('searchicon.png');
+    background-position: 18px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+    
+}
+
+input[type=text]:focus {
+    width: 100%;
+}
+
+/* end search bar */
+
+
+
+
+
+/* start of list menu */
+.wrap {
+    margin: auto;
+    width: 320px;
+}
+
+.site-nav {
+    background: rgb(66,66,66);
+    border-bottom: 2px solid rgb(55,55,55);
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    display: block;
+    float: left;
+    margin: 0;
+    padding: 0 10px 10px 10px;
+    width: 100%;
+}
+
+.site-nav-wrap {
+    height: 75px;
+    float: left;
+    overflow: hidden;
+    width: 100%;
+}
+
+.site-nav-toggle {
+    background-color: rgb(200,200,200);
+    border-bottom-right-radius: 150px;
+    border-bottom-left-radius: 150px;
+    color: rgb(3,3,3);
+    clear: both;
+    cursor: pointer;
+    display: block;
+    height: 75px;
+    line-height: 75px;
+    margin: -20px auto 40px auto;
+    text-align: center;
+    -webkit-transition: color .5s ease;
+    transition: color .5s ease;
+    width: 150px;
+}
+
+.site-nav-toggle:hover {
+    background-color: rgb(3,3,3);
+    color: rgb(200,200,200);
+    -webkit-transition: color .5s ease;
+    transition: color .5s ease;
+}
+
+h1 { font-weight: bold; font-size: 24px; }
+img {
+    width: 50%;
+    border-radius: 25px;
+}
+
+.h5, h5 {
+    font-size: 15px;
+    font-weight: bold;
+    font-style: oblique;
+}
+
+/* end of list menu */
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+
+@media screen and (max-height: 360px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
+}
