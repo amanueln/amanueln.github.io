@@ -35,17 +35,19 @@ function initMap() {
     };
     //creates map 
     var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 12
-        , center: uluru
+        zoom: 12, 
+        center: uluru
     });
+    
+    //Foursquare start
     //foursquare clientID & secret
     var clientID = 'LH33HAMSV5DNQWAJQLTNGJBF23EFGHIC0CMC5SMHELD3VA4Y';
     var clientSecret = '4GZY5OVE2NLVEU2GPW2U5KFKCZLXG3YQMRVBZ4ZK5NTF35EQ';
     //end of foursquare credientials.
     //for looping markers and placing them on map
     //requests foursquare ulr to get venu and photos
-    for (var i = 0; i < places().length; i++) {
-        // get JSON request of foursquare data
+    function loadJson (){
+       // get JSON request of foursquare data
         var reqURL = 'https://api.foursquare.com/v2/venues/search?ll=' + places()[i].location.lat + ',' + places()[i].location.lng + '&client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20180803' + '&query=' + places()[i].title;
         //after request is done
         $.when($.getJSON(reqURL)).done(function (data1) {
@@ -94,8 +96,14 @@ function initMap() {
             //error handler for foursquare data gathering.
         }).fail(function () {
             alert('FOURSQUARE BROKE: ISSUE WITH API REQUEST');
-        });
+        });  
+    };
+    
+    for (var i = 0; i < places().length; i++) {
+        loadJson(places());
+       
     }
+    // Foursquare End
     // This function populates the infowindow when the marker is clicked. We'll only allow
     // one infowindow which will open at the marker that is clicked, and populate based
     // on that markers position.
