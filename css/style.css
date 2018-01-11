@@ -203,13 +203,18 @@ img {
 
 /* end of list menu */
 
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+/* On smaller screens, where height is less than 360px, change the style of the sidenav (less padding and a smaller font size) */
 
 @media screen and (max-height: 360px) {
     .sidenav {
-        padding-top: 15px;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        height: 100vh;
+        
     }
     .sidenav a {
-        font-size: 18px;
+        font-size: 11px;
     }
 }
