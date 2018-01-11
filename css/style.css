@@ -205,13 +205,18 @@ img {
 
 /* On smaller screens, where height is less than 360px, change the style of the sidenav (less padding and a smaller font size) */
 
-@media screen and (max-height: 360px) {
+@media screen and (min-width: 360px) {
     .sidenav {
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
         -ms-flex-direction: column;
         flex-direction: column;
+        max-width: 100%;
         height: 100vh;
+        position: fixed;
+        top: 0;
+        /* top layer */
+        z-index: 9999;
         
     }
     .sidenav a {
