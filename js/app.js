@@ -1,5 +1,4 @@
-// storage for all map markers created.
-var markers = [];
+
 // initilize google maps.
 function initMap() { 
     window.onerror = function (msg, url, lineNo, columnNo, error) {
@@ -101,15 +100,14 @@ function initMap() {
     
     for (var i = 0; i < places().length; i++) {
         loadJson(places());
-       
-    }
+       }
     // Foursquare End
     // This function populates the infowindow when the marker is clicked. We'll only allow
     // one infowindow which will open at the marker that is clicked, and populate based
     // on that markers position.
     function populateInfoWindow(marker, infowindow) {
         //content of my marker infowindow.
-        var contentString = '<div id="content" class="text-center text-uppercase"><div id="siteNotice"></div><div id="bodyContent"><h4><b>' + marker.title + '</h4></b><div id="venueImg" class="image">' + '<img src="https://igx.4sqi.net/img/general/300x300' + marker.img + '" alt=""' + '</div><div><hr><p>Venue hours:</p><h5>' + marker.hours + '</h5></div><div><br><p>Rated:</p><h5><font color="' + marker.ratingColor + '">' + marker.rating + '</font>/10</h5><hr></div>' + '<div><p>for more information visit:</p></div><a href="' + marker.url + '" target="_blank">' + marker.url + '</div></div>';
+        var contentString = '<div id="content" class="text-center text-uppercase"><div id="siteNotice"></div><div id="bodyContent"><h4><b " onerror="titleError()">' + marker.title + '</h4></b><div id="venueImg" class="image">' + '<img src="https://igx.4sqi.net/img/general/300x300' + marker.img + '" onerror="imageError()"  alt=""' + '</div><div><hr><p>Venue hours:</p><h5>' + marker.hours + '</h5></div><div><br><p>Rated:</p><h5><font color="' + marker.ratingColor + '">' + marker.rating + '</font>/10</h5><hr></div>' + '<div><p>for more information visit:</p></div><a href="' + marker.url + '" target="_blank">' + marker.url + '</div></div>';
         // Check to make sure the infowindow is not already opened on this marker.
         if (marker) {
             infowindow.marker = marker;
@@ -117,6 +115,7 @@ function initMap() {
             //set bounce animation on clicked marker.
              map.getBounds(infowindow.marker.getPosition());
             infowindow.marker.setAnimation(google.maps.Animation.BOUNCE);
+            setTimeout(function(){ infowindow.marker.setAnimation(null); }, 1400);
             infowindow.open(map, marker);
             //zooms in to map when marker clicked
             map.setZoom(16);
@@ -138,9 +137,11 @@ function initMap() {
         populateInfoWindow(this, MarkersInfowindow);
     };
 }
-// knockout view model hold my data of places
-function AppViewModel() {
-    places = ko.observableArray([
+
+// storage for all map markers created.
+var markers = ko.observableArray();
+//array with my location data
+places = ko.observableArray([
         {
             title: 'Dun-Well Doughnuts', 
             location: {
@@ -192,21 +193,28 @@ function AppViewModel() {
         }
 
 
-    ]), listInput = ko.observable('');
+    ]);
+
+// knockout view model.
+function AppViewModel() {
+    //stores/tracks user input    
+    listInput = ko.observable(''),
+    //takes user input and filters marker/list
     searchedNames = ko.computed(function () {
-        // filters markers/list
+        // lowercase user input
         var storeInput = listInput().toLowerCase();
-        console.log(storeInput);
+        //if false show all
         if (!storeInput) {
-            ko.utils.arrayForEach(markers, function (item) {
+            ko.utils.arrayForEach(markers(), function (item) {
                 //  when listInput is blank all markers visible(true)
                 item.setVisible(true);
             });
-            return markers;
+            return markers();
         }
+        // set all markers visible based on result 
         else {
-            return ko.utils.arrayFilter(markers, function (item) {
-                // set all markers visible based on result
+            return ko.utils.arrayFilter(markers(), function (item) {
+                // takes user input and filters
                 var result = (item.title.toLowerCase().search(storeInput) >= 0);
                 item.setVisible(result);
                 return result;

@@ -34,7 +34,7 @@
                     <hr>
                     <ul class="text-uppercase" id="list" data-bind="foreach: searchedNames">
                         <li>
-                            <a href="#" id="" data-bind="text : title,click: infoList"></a>
+                            <a href="#" id="" data-bind="text: title,click: infoList"></a>
                         </li>
                     </ul>
                 </div>
@@ -47,9 +47,10 @@
         </div>
     </main>
     <!--    >Google Maps start</!-->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAShQoJ2iizrofRAlqgHZFzwJI1S3fB13I&libraries=places&callback=initMap">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAShQoJ2iizrofRAlqgHZFzwJI1S3fB13I&libraries=places&callback=initMap" onerror="mapError()">
     </script>
     <script src="js/app.js"></script>
+    <script src="js/errors.js"></script>
     <!--    >Google Maps end</!-->
     <!--    >Google Maps page look js</!-->
     <script type="text/javascript" src="js/pagelook.js"></script>
