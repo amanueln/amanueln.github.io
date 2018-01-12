@@ -138,7 +138,7 @@ function initMap() {
             document.getElementById("input").addEventListener("click", function(){ 
             if (infowindow != null) { 
                 infowindow.close(); 
-                map.setCenter(infowindow.marker.getPosition());
+                map.setZoom(12);
                   } 
             });
                 }
