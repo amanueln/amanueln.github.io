@@ -114,7 +114,6 @@ function initMap() {
         // Check to make sure the infowindow is not already opened on this marker.
         if (marker) {
             infowindow.marker = marker;
-            console.log(infowindow.marker);
             infowindow.setContent(contentString);
             //set bounce animation on clicked marker.
              map.getBounds(infowindow.marker.getPosition());
