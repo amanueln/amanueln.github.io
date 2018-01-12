@@ -1,5 +1,4 @@
 
-
 // initilize google maps.
 function initMap() { 
     window.onerror = function (msg, url, lineNo, columnNo, error) {
@@ -48,7 +47,7 @@ function initMap() {
     //requests foursquare ulr to get venu and photos
     function loadJson (){
        // get JSON request of foursquare data
-        var reqURL = 'https://api.foursquare.com/v2/venues/search?ll=' + places()[i].location.lat + ',' + places()[i].location.lng + '&client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20180803' + '&query=' + places()[i].title;
+        var reqURL = 'https://api.foursquare.com/v2/venues/search?ll=' + places[i].location.lat + ',' + places[i].location.lng + '&client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20180803' + '&query=' + places[i].title;
         //after request is done
         $.when($.getJSON(reqURL)).done(function (data1) {
             //getting venue result
@@ -101,8 +100,8 @@ function initMap() {
         });  
     }
     
-    for (var i = 0; i < places().length; i++) {
-        loadJson(places());
+    for (var i = 0; i < places.length; i++) {
+        loadJson(places);
        }
     //Foursquare End
      
@@ -115,6 +114,7 @@ function initMap() {
         // Check to make sure the infowindow is not already opened on this marker.
         if (marker) {
             infowindow.marker = marker;
+            console.log(infowindow.marker);
             infowindow.setContent(contentString);
             //set bounce animation on clicked marker.
              map.getBounds(infowindow.marker.getPosition());
@@ -134,18 +134,26 @@ function initMap() {
                 //is closed
                 map.setZoom(12);
             });
-        }
+            //if filter textarea is clicked infowindow closes 
+            document.getElementById("input").addEventListener("click", function(){ 
+            if (infowindow != null) { 
+                infowindow.close(); 
+                map.setCenter(infowindow.marker.getPosition());
+                  } 
+            });
+                }
     }
     //opens infowindow when list is clicked.
     infoList = function (clickedinfo) {
         populateInfoWindow(this, MarkersInfowindow);
+        /* Set the width of the side navigation to 0 */
+        document.getElementById("mySidenav").style.width = "0";
     };
 }
 
-// storage for all map markers created.
-var markers = ko.observableArray();
+
 //array with my location data
-places = ko.observableArray([
+places =[
         {
             title: 'Dun-Well Doughnuts', 
             location: {
@@ -197,8 +205,9 @@ places = ko.observableArray([
         }
 
 
-    ]);
-
+    ];
+// storage for all map markers created.
+var markers = ko.observableArray();
 // knockout view model.
 function AppViewModel() {
     //stores/tracks user input    
