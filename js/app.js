@@ -134,7 +134,7 @@ function initMap() {
                 //is closed
                 map.setZoom(12);
             });
-            if filter textarea is clicked infowindow closes 
+            //if filter textarea is clicked infowindow closes 
             document.getElementById("input").addEventListener("click", function(){ 
             if (infowindow != null) { 
                 infowindow.close(); 
