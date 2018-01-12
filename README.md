@@ -10,7 +10,7 @@ Features and libraries :
   - CSS3
   - jQuery
   - Bootstrap 3
-  -knockout.js
+  - knockout.js
   - Responsive
   - CSS and jQuery animations
   - Compatible Browsers :
