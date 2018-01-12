@@ -213,8 +213,12 @@ h5 {
 
 /* end of list menu */
 
+<<<<<<< HEAD
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+=======
+/* On smaller screens, where height is less than 360px, change the style of the sidenav (less padding and a smaller font size) */
+>>>>>>> origin/master
 
 @media screen and (min-width: 360px) {
     .sidenav {
@@ -228,6 +232,10 @@ h5 {
         top: 0;
         /* top layer */
         z-index: 9999;
+<<<<<<< HEAD
+=======
+        
+>>>>>>> origin/master
     }
     .sidenav a {
         font-size: 11px;
