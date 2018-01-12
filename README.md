@@ -17,7 +17,7 @@ Features and libraries :
     - IE, Firefox, Safari, Opera, Chrome
 
 ### Live Demo
-[Live Demo](amanueln.github.io)
+[Live Demo](https://amanueln.github.io/)
 
 ### Installation
   - Unzip the file and run the index.html
