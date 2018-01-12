@@ -135,12 +135,12 @@ function initMap() {
                 map.setZoom(12);
             });
             //if filter textarea is clicked infowindow closes 
-            document.getElementById("input").addEventListener("click", function(){ 
-            if (infowindow !== null) { 
-                infowindow.close(); 
-                map.setCenter(infowindow.marker.getPosition());
-                  } 
-            });
+//            document.getElementById("input").addEventListener("click", function(){ 
+//            if (infowindow != null) { 
+//                infowindow.close(); 
+//                map.setCenter(infowindow.marker.getPosition());
+//                  } 
+//            });
                 }
     }
     //opens infowindow when list is clicked.
