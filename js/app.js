@@ -134,7 +134,6 @@ function initMap() {
                 //is closed
                 map.setZoom(12);
             });
-<<<<<<< HEAD
             if filter textarea is clicked infowindow closes 
             document.getElementById("input").addEventListener("click", function(){ 
             if (infowindow != null) { 
@@ -142,15 +141,6 @@ function initMap() {
                 map.setCenter(infowindow.marker.getPosition());
                   } 
             });
-=======
-            //if filter textarea is clicked infowindow closes 
-//            document.getElementById("input").addEventListener("click", function(){ 
-//            if (infowindow != null) { 
-//                infowindow.close(); 
-//                map.setCenter(infowindow.marker.getPosition());
-//                  } 
-//            });
->>>>>>> origin/master
                 }
     }
     //opens infowindow when list is clicked.
