@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="css/style.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
-     <!--    >knockout start</!-->
-    <script type="text/javascript" src="js/knockout-3.4.2.js"></script>
+    <!--    >knockout start</!-->
+    <script src="js/knockout-3.4.2.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn t work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -20,43 +20,41 @@
 </head>
 
 <body>
-   
     <main class="iframe-container">
-        <div class="container-fluid"> <span class="test" style="font-size:35px; color:white;cursor:pointer" onclick="openNav()">&#9776;<strong class="text-uppercase" >places to go</strong></span>
-            <div id="mySidenav" class="sidenav"> <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="container-fluid"> <span class="openbtn" data-bind="click: openNav">&#9776;<strong class="text-uppercase" >places to go</strong></span>
+            <div id="mySidenav" class="sidenav"> <a href="#" class="closebtn" data-bind="click: closeNav">&times;</a>
                 <div class="row">
                     <form class="navbar-form navbar-left" role="search">
                         <div class="form-group">
-                            <input type="text" data-bind="textInput : listInput " placeholder="Search.."> </div>
+                            <input id="input" type="text" data-bind="textInput: listInput " placeholder="Search.."> </div>
                     </form>
                 </div>
                 <div class="row">
                     <hr>
                     <ul class="text-uppercase" id="list" data-bind="foreach: searchedNames">
                         <li>
-                            <a href="#" id="" data-bind="text: title,click: infoList"></a>
+                            <a href="#" data-bind="text: title,click: infoList"></a>
                         </li>
                     </ul>
                 </div>
             </div>
             <div id="map"></div>
-<div id="alert" class="alert alert-info hide  text-center">
-	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
-</button>
-</div>
         </div>
     </main>
-    <!--    >Google Maps start</!-->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAShQoJ2iizrofRAlqgHZFzwJI1S3fB13I&libraries=places&callback=initMap" onerror="mapError()">
-    </script>
-    <script src="js/app.js"></script>
-    <script src="js/errors.js"></script>
-    <!--    >Google Maps end</!-->
-    <!--    >Google Maps page look js</!-->
-    <script type="text/javascript" src="js/pagelook.js"></script>
-    <!--    >Google Maps page look js end</!-->
+   <!-- Jquery start -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- Jquery end -->
+    <!-- app start -->
+    <script src="js/app.js"></script>
+    <script src="js/errors.js"></script>
+    <!-- Google Maps page look js -->
+    <script src="js/pagelook.js"></script>
+    <!-- Google Maps page look js end -->
+     <!-- Google Maps start -->
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAShQoJ2iizrofRAlqgHZFzwJI1S3fB13I&libraries=places&callback=initMap" onerror="mapError()">
+    </script>
+    <!--    >Google Maps end</!-->
 </body>
 
 </html>

@@ -38,8 +38,8 @@ function initMap() {
         center: uluru
     });
     
-    //Foursquare start
-    //foursquare clientID & secret
+    /**Foursquare start
+    foursquare clientID & secret**/
     var clientID = 'LH33HAMSV5DNQWAJQLTNGJBF23EFGHIC0CMC5SMHELD3VA4Y';
     var clientSecret = '4GZY5OVE2NLVEU2GPW2U5KFKCZLXG3YQMRVBZ4ZK5NTF35EQ';
     //end of foursquare credientials.
@@ -47,7 +47,7 @@ function initMap() {
     //requests foursquare ulr to get venu and photos
     function loadJson (){
        // get JSON request of foursquare data
-        var reqURL = 'https://api.foursquare.com/v2/venues/search?ll=' + places()[i].location.lat + ',' + places()[i].location.lng + '&client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20180803' + '&query=' + places()[i].title;
+        var reqURL = 'https://api.foursquare.com/v2/venues/search?ll=' + places[i].location.lat + ',' + places[i].location.lng + '&client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20180803' + '&query=' + places[i].title;
         //after request is done
         $.when($.getJSON(reqURL)).done(function (data1) {
             //getting venue result
@@ -66,8 +66,8 @@ function initMap() {
                     lat: results.location.lat, 
                     lng: results.location.lng
                 };
-                //creating markers using foursquare data.
-                //for google maps
+                /*creating markers using foursquare data.
+                for google maps*/
                 var marker = new google.maps.Marker({
                     position: location, 
                     map: map, 
@@ -84,8 +84,10 @@ function initMap() {
                     rating: info.response.venue.rating, 
                     ratingColor: info.response.venue.ratingColor
                 });
-                // creats an event listener.
-                //loads infowindow for individual marker.
+                
+                /*creats an event listener.
+                loads infowindow for individual marker.
+                */
                 marker.addListener('click', function () {
                     populateInfoWindow(this, MarkersInfowindow);
                 });
@@ -98,19 +100,21 @@ function initMap() {
         });  
     }
     
-    for (var i = 0; i < places().length; i++) {
-        loadJson(places());
+    for (var i = 0; i < places.length; i++) {
+        loadJson(places);
        }
-    // Foursquare End
-    // This function populates the infowindow when the marker is clicked. We'll only allow
-    // one infowindow which will open at the marker that is clicked, and populate based
-    // on that markers position.
+    //Foursquare End
+     
+    /*This function populates the infowindow when the marker is clicked. We'll only allow
+     one infowindow which will open at the marker that is clicked, and populate based
+     on that markers position.*/
     function populateInfoWindow(marker, infowindow) {
         //content of my marker infowindow.
         var contentString = '<div id="content" class="text-center text-uppercase"><div id="siteNotice"></div><div id="bodyContent"><h4><b " onerror="titleError()">' + marker.title + '</h4></b><div id="venueImg" class="image">' + '<img src="https://igx.4sqi.net/img/general/300x300' + marker.img + '" onerror="imageError()"  alt=""' + '</div><div><hr><p>Venue hours:</p><h5>' + marker.hours + '</h5></div><div><br><p>Rated:</p><h5><font color="' + marker.ratingColor + '">' + marker.rating + '</font>/10</h5><hr></div>' + '<div><p>for more information visit:</p></div><a href="' + marker.url + '" target="_blank">' + marker.url + '</div></div>';
         // Check to make sure the infowindow is not already opened on this marker.
         if (marker) {
             infowindow.marker = marker;
+            console.log(infowindow.marker);
             infowindow.setContent(contentString);
             //set bounce animation on clicked marker.
              map.getBounds(infowindow.marker.getPosition());
@@ -119,8 +123,8 @@ function initMap() {
             infowindow.open(map, marker);
             //zooms in to map when marker clicked
             map.setZoom(16);
-            //centers map on marker
-            //based on getting markers lat/long
+            /*centers map on marker
+            based on getting markers lat/long*/
             map.setCenter(infowindow.marker.getPosition());
             // Make sure the marker property is cleared if the infowindow is closed.
             infowindow.addListener('closeclick', function () {
@@ -130,18 +134,25 @@ function initMap() {
                 //is closed
                 map.setZoom(12);
             });
-        }
+            //if filter textarea is clicked infowindow closes 
+            document.getElementById("input").addEventListener("click", function(){ 
+            if (infowindow != null) { 
+                infowindow.close(); 
+                  } 
+            });
+                }
     }
     //opens infowindow when list is clicked.
     infoList = function (clickedinfo) {
         populateInfoWindow(this, MarkersInfowindow);
+        /* Set the width of the side navigation to 0 */
+        document.getElementById("mySidenav").style.width = "0";
     };
 }
 
-// storage for all map markers created.
-var markers = ko.observableArray();
+
 //array with my location data
-places = ko.observableArray([
+places =[
         {
             title: 'Dun-Well Doughnuts', 
             location: {
@@ -193,8 +204,9 @@ places = ko.observableArray([
         }
 
 
-    ]);
-
+    ];
+// storage for all map markers created.
+var markers = ko.observableArray();
 // knockout view model.
 function AppViewModel() {
     //stores/tracks user input    
