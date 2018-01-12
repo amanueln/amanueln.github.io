@@ -135,7 +135,7 @@ function initMap() {
             });
             //if filter textarea is clicked infowindow closes 
             document.getElementById("input").addEventListener("click", function(){ 
-            if (infowindow != null) { 
+            if (infowindow !== null) { 
                 infowindow.close(); 
                 map.setZoom(12);
                   } 
