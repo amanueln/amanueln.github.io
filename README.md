@@ -11,7 +11,6 @@ Features and libraries :
   - jQuery
   - Bootstrap 3
   - knockout.js
-  - Responsive
   - CSS and jQuery animations
   - Compatible Browsers :
     - IE, Firefox, Safari, Opera, Chrome
