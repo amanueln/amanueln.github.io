@@ -27,10 +27,11 @@ Features and libraries :
   
   
 ### material source
-[Live Demo](https://amanueln.github.io/)
-[Twitter Bootstrap]: (http://twitter.github.com/bootstrap/)
-[knockout.js]: (http://knockoutjs.com/)
-[jQuery]: (http://jquery.com)
+- [knockout.js](http://knockoutjs.com/)
+- [Twitter Bootstrap](http://twitter.github.com/bootstrap/)
+- [jQuery](http://jquery.com/)
+- [w3 school](https://www.w3schools.com/default.asp)
+
 
 This map uses Google Maps API needs Key/Authentication you may need to use your own key.
 For getting a key visit :
