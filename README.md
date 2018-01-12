@@ -24,6 +24,12 @@ Features and libraries :
   - By clicking on the markers or list items, the information of the place will be displayed.
   - There is an event listener which centers the map based on the selected pin so it would help a lot on small displays.
   - By clicking on the infowindow exit button, you will be zoomed back out to see all the markers. if you have typed the marker you want     only that marker will still be shown when zoomed out. 
+  
+  
+### material source
+[Twitter Bootstrap]: <http://twitter.github.com/bootstrap/>
+[knockout.js]: <http://knockoutjs.com/>
+[jQuery]: <http://jquery.com>
 
 This map uses Google Maps API needs Key/Authentication you may need to use your own key.
 For getting a key visit :
@@ -42,8 +48,4 @@ https://developer.foursquare.com/docs/api/getting-started
     var clientSecret = '4GZY5OVE2NLVEU2GPW2U5KFKCZLXG3YQMRVBZ4ZK5NTF35EQ';```
 
 
-### material source
-[Twitter Bootstrap]: <http://twitter.github.com/bootstrap/>
-[knockout.js]: <http://knockoutjs.com/>
-[jQuery]: <http://jquery.com>
 
