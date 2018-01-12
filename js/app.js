@@ -1,5 +1,4 @@
 
-
 // initilize google maps.
 function initMap() { 
     window.onerror = function (msg, url, lineNo, columnNo, error) {
@@ -135,10 +134,11 @@ function initMap() {
                 //is closed
                 map.setZoom(12);
             });
-            //if filter textarea is clicked infowindow closes 
+            if filter textarea is clicked infowindow closes 
             document.getElementById("input").addEventListener("click", function(){ 
             if (infowindow != null) { 
                 infowindow.close(); 
+                map.setCenter(infowindow.marker.getPosition());
                   } 
             });
                 }
