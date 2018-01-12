@@ -27,9 +27,9 @@ Features and libraries :
   
   
 ### material source
-[Twitter Bootstrap]: <http://twitter.github.com/bootstrap/>
-[knockout.js]: <http://knockoutjs.com/>
-[jQuery]: <http://jquery.com>
+[Twitter Bootstrap]: (http://twitter.github.com/bootstrap/)
+[knockout.js]: (http://knockoutjs.com/)
+[jQuery]: (http://jquery.com)
 
 This map uses Google Maps API needs Key/Authentication you may need to use your own key.
 For getting a key visit :
