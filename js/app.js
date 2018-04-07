@@ -101,6 +101,7 @@ function initMap() {
     }
     
     for (place of places) {
+        console.log(place)
         loadJson(place);
     }
     //Foursquare End
