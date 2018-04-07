@@ -47,7 +47,7 @@ function initMap() {
     //requests foursquare ulr to get venu and photos
     function loadJson() {
         // get JSON request of foursquare data
-        var reqURL = `https://api.foursquare.com/v2/venues/search?ll=${place.location.lng }&client_id=${clientID}&client_secret=${clientSecret}&v=20180803&query=${place.title}`;
+         var reqURL = 'https://api.foursquare.com/v2/venues/search?ll=' + place.location.lat + ',' + place.location.lng + '&client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20180803' + '&query=' + place.title;
         //after request is done
         console.log(reqURL);
         $.when($.getJSON(reqURL)).done(function (data1) {
@@ -110,7 +110,7 @@ function initMap() {
      on that markers position.*/
     function populateInfoWindow(marker, infowindow) {
         //contents of my marker infowindow.
-        var contentString = `'<div id="content" class="text-center text-uppercase"><div id="siteNotice"></div><div id="bodyContent"><h4><b " onerror="titleError()"> ${marker.title} </h4></b><div id="venueImg" class="image"> <img src="https://igx.4sqi.net/img/general/300x300${marker.img}" onerror="imageError()"  alt=""' </div><div><hr><p>Venue hours:</p><h5>${marker.hours}</h5></div><div><br><p>Rated:</p><h5><font color="${marker.ratingColor}">${marker.rating}</font>/10</h5><hr></div><div><p>for more information visit:</p></div><a href=" ${marker.url}"target="_blank">${marker.url}</div></div>`;
+        var contentString = `<div id="content" class="text-center text-uppercase"><div id="siteNotice"></div><div id="bodyContent"><h4><b " onerror="titleError()"> ${marker.title} </h4></b><div id="venueImg" class="image"> <img src="https://igx.4sqi.net/img/general/300x300${marker.img}" onerror="imageError()"  alt=""' </div><div><hr><p>Venue hours:</p><h5>${marker.hours}</h5></div><div><br><p>Rated:</p><h5><font color="${marker.ratingColor}">${marker.rating}</font>/10</h5><hr></div><div><p>for more information visit:</p></div><a href=" ${marker.url}"target="_blank">${marker.url}</div></div>`;
         // Check to make sure the infowindow is not already opened on this marker.
         if (marker) {
             infowindow.marker = marker;
