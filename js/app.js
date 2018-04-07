@@ -45,46 +45,45 @@ function initMap() {
     //end of foursquare credientials.
     //for looping markers and placing them on map
     //requests foursquare ulr to get venu and photos
-    function loadJson (){
-       // get JSON request of foursquare data
-        var reqURL = `https://api.foursquare.com/v2/venues/search?ll= ${location},${place.location.lng }&client_id=${clientID}&client_secret=${clientSecret}&v=20180803&query=${place.title}`;
+    function loadJson() {
+        // get JSON request of foursquare data
+        var reqURL = 'https://api.foursquare.com/v2/venues/search?ll=' + place.location.lat + ',' + place.location.lng + '&client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20180803' + '&query=' + place.title;
         //after request is done
         $.when($.getJSON(reqURL)).done(function (data1) {
             //getting venue result
             //collect venuid 
             var results = data1.response.venues[0];
             //url for foursquare marker info
-            var infoURL = `https://api.foursquare.com/v2/venues/${location}?&client_id=${clientID}&client_secret=${clientSecret}&v=20180803`;
+            var infoURL = 'https://api.foursquare.com/v2/venues/' + results.id + '?&client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20180803';
             // get JSON request of foursquare venu info
             $.when($.getJSON(infoURL)).done(function (infoData) {
                 //foursquare request info
                 var info = infoData;
                 //venu photo
                 var photos = info.response.venue.bestPhoto.suffix;
-                    //getting location from foursquare
+                //getting location from foursquare
                 var location = {
-                    lat: results.location.lat, 
-                    lng: results.location.lng
+                    lat: results.location.lat
+                    , lng: results.location.lng
                 };
                 /*creating markers using foursquare data.
                 for google maps*/
                 var marker = new google.maps.Marker({
-                    position: location, 
-                    map: map, 
-                    title: results.name, 
-                    description: info.response.venue.description, 
-                    animation: google.maps.Animation.DROP, 
-                    id: results.id, 
-                    url: info.response.venue.url, 
-                    categories: info.response.venue.categories["0"], 
-                    img: photos, 
-                    address: results.location.formattedAddress, 
-                    contact: info.response.venue.contact.formattedPhone, 
-                    hours: info.response.venue.hours.status, 
-                    rating: info.response.venue.rating, 
-                    ratingColor: info.response.venue.ratingColor
+                    position: location
+                    , map: map
+                    , title: results.name
+                    , description: info.response.venue.description
+                    , animation: google.maps.Animation.DROP
+                    , id: results.id
+                    , url: info.response.venue.url
+                    , categories: info.response.venue.categories["0"]
+                    , img: photos
+                    , address: results.location.formattedAddress
+                    , contact: info.response.venue.contact.formattedPhone
+                    , hours: info.response.venue.hours.status
+                    , rating: info.response.venue.rating
+                    , ratingColor: info.response.venue.ratingColor
                 });
-                
                 /*creats an event listener.
                 loads infowindow for individual marker.
                 */
@@ -96,10 +95,10 @@ function initMap() {
             });
             //error handler for foursquare data gathering.
         }).fail(function () {
-            alert('FOURSQUARE BROKE: ISSUE WITH API REQUEST');
-        });  
+            $().alert('FOURSQUARE BROKE: ISSUE WITH API REQUEST')
+                //alert('FOURSQUARE BROKE: ISSUE WITH API REQUEST');
+        });
     }
-    
     for (place of places) {
         console.log(place)
         loadJson(place);
