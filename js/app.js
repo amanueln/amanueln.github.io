@@ -47,7 +47,7 @@ function initMap() {
     //requests foursquare ulr to get venu and photos
     function loadJson (){
        // get JSON request of foursquare data
-        var reqURL = `https://api.foursquare.com/v2/venues/search?ll= ${location},${places[i].location.lng }&client_id=${clientID}&client_secret=${clientSecret}&v=20180803&query=${places[i].title}`;
+        var reqURL = `https://api.foursquare.com/v2/venues/search?ll= ${location},${place.location.lng }&client_id=${clientID}&client_secret=${clientSecret}&v=20180803&query=${place.title}`;
         //after request is done
         $.when($.getJSON(reqURL)).done(function (data1) {
             //getting venue result
@@ -100,9 +100,9 @@ function initMap() {
         });  
     }
     
-    for (var i = 0; i < places.length; i++) {
-        loadJson(places);
-       }
+    for (place of places) {
+        loadJson(place);
+    }
     //Foursquare End
      
     /*This function populates the infowindow when the marker is clicked. We'll only allow
