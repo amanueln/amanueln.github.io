@@ -49,6 +49,7 @@ function initMap() {
         // get JSON request of foursquare data
         var reqURL = `https://api.foursquare.com/v2/venues/search?ll=${place.location.lng }&client_id=${clientID}&client_secret=${clientSecret}&v=20180803&query=${place.title}`;
         //after request is done
+        console.log(reqURL);
         $.when($.getJSON(reqURL)).done(function (data1) {
             //getting venue result
             //collect venuid 
