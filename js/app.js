@@ -47,7 +47,7 @@ function initMap() {
     //requests foursquare ulr to get venu and photos
     function loadJson() {
         // get JSON request of foursquare data
-         var reqURL = 'https://api.foursquare.com/v2/venues/search?ll=' + place.location.lat + ',' + place.location.lng + '&client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20180803' + '&query=' + place.title;
+         var reqURL = `https://api.foursquare.com/v2/venues/search?ll=${place.location.lat},${place.location.lng}&client_id=${clientID}&client_secret= ${clientSecret}&v=20180803&query=${place.title}`;
         //after request is done
         console.log(reqURL);
         $.when($.getJSON(reqURL)).done(function (data1) {
@@ -55,7 +55,7 @@ function initMap() {
             //collect venuid 
             var results = data1.response.venues[0];
             //url for foursquare marker info
-            var infoURL = 'https://api.foursquare.com/v2/venues/' + results.id + '?&client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20180803';
+            var infoURL = `https://api.foursquare.com/v2/venues/${results.id}?&client_id=${clientID}&client_secret=${clientSecret}&v=20180803`;
             // get JSON request of foursquare venu info
             $.when($.getJSON(infoURL)).done(function (infoData) {
                 //foursquare request info
