@@ -8,10 +8,9 @@
 
 .iframe-container > * {
     display: block;
-    position: absolute;
-    top: 10px;
+    position: relative;
+    top: 0;
     right: 0;
-    bottom: -30px;
     left: 0;
     margin: 0;
     padding: 0;
@@ -22,22 +21,23 @@
 }
 
 body {
-    background-color: black;
+    margin: 0;
+    text-align: left;
+    
 }
 
-html {
-    background-color: black;
-    margin-bottom: -10px;
-}
 
 .openbtn {
-    font-size: 35px;
-    color: white;
-    cursor: pointer
+    font-size: 25px;
+    color: black;
+    cursor: pointer;
+    font-style: 
 }
 
 #map {
-    height: 85vh;
+    height: 100vh;
+    
+    
 }
 
 .gm-style-iw {
@@ -197,10 +197,18 @@ h1 {
     font-weight: bold;
     font-size: 24px;
 }
+#content{
+    width: 100%;
+}
+
+#venueImg{
+    border-radius: 25px;
+}
 
 img {
     width: 50%;
-    border-radius: 25px;
+    
+}
 }
 
 .h5,
