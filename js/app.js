@@ -1,4 +1,7 @@
-
+// loads modalon load to update user 
+$(window).load(function(){        
+   $('#myModal').modal('show');
+    }); 
 // initilize google maps.
 function initMap() { 
     window.onerror = function (msg, url, lineNo, columnNo, error) {
@@ -34,7 +37,7 @@ function initMap() {
     };
     //creates map 
     var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 11, 
+        zoom: 12, 
         center: uluru
     });
     
