@@ -34,7 +34,7 @@ function initMap() {
     };
     //creates map 
     var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 12, 
+        zoom: 11, 
         center: uluru
     });
     
