@@ -1,7 +1,4 @@
-// loads modalon load to update user 
-$(window).load(function(){        
-   $('#myModal').modal('show');
-    }); 
+
 // initilize google maps.
 function initMap() { 
     window.onerror = function (msg, url, lineNo, columnNo, error) {
@@ -65,6 +62,8 @@ function initMap() {
                 var info = infoData;
                 //venu photo
                 var photos = info.response.venue.bestPhoto.suffix;
+                //venu photo
+                var gallerys = info.response.venue.photos.groups["0"].items;
                 //getting location from foursquare
                 var location = {
                     lat: results.location.lat
@@ -82,6 +81,7 @@ function initMap() {
                     , url: info.response.venue.url
                     , categories: info.response.venue.categories["0"]
                     , img: photos
+                    , gallerys: gallerys
                     , address: results.location.formattedAddress
                     , contact: info.response.venue.contact.formattedPhone
                     , hours: info.response.venue.hours.status
@@ -113,7 +113,7 @@ function initMap() {
      on that markers position.*/
     function populateInfoWindow(marker, infowindow) {
         //contents of my marker infowindow.
-        var contentString = `<div id="content" class="text-center text-uppercase"><div id="siteNotice"></div><div id="bodyContent"><h4><b " onerror="titleError()"> ${marker.title} </h4></b><div id="venueImg" class="image"> <img src="https://igx.4sqi.net/img/general/300x300${marker.img}" onerror="imageError()"  alt=""' </div><div><hr><p>Venue hours:</p><h5>${marker.hours}</h5></div><div><br><p>Rated:</p><h5><font color="${marker.ratingColor}">${marker.rating}</font>/10</h5><hr></div><div><p>for more information visit:</p></div><a href=" ${marker.url}"target="_blank">${marker.url}</div></div>`;
+        var contentString = `<div id="content" class="text-center text-uppercase"><div id="siteNotice"></div><div id="bodyContent"><h4><b " onerror="titleError()"> ${marker.title} </h4></b><div id="venueImg" class="image"><a data-fancybox="gallery" href="https://igx.4sqi.net/img/general/300x300${marker.img}" onerror="imageError()" ><img src="https://igx.4sqi.net/img/general/300x300${marker.img}"></a> </div><div><hr><p>Venue hours:</p><h5>${marker.hours}</h5></div><div><br><p>Rated:</p><h5><font color="${marker.ratingColor}">${marker.rating}</font>/10</h5><hr></div><div><p>for more information visit:</p></div><a href=" ${marker.url}"target="_blank">${marker.url}</div></div>`;
         // Check to make sure the infowindow is not already opened on this marker.
         if (marker) {
             infowindow.marker = marker;
