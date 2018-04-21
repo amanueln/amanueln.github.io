@@ -210,6 +210,11 @@ h1 {
 img {
     width: 50%;
     
+    
+}
+img:hover {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
 }
 }
 
