@@ -7,6 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Nates POI'S</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.1/jquery.fancybox.min.css" />
@@ -42,19 +46,31 @@
         </div>
         <div class="map"> <span class="openbtn" data-bind="click: openNav">&#9776;<strong class="text-uppercase" >places to go</strong></span>
             <div id="mySidenav" class="sidenav"> <a href="#" class="closebtn" data-bind="click: closeNav">&times;</a>
-                <div class="row">
-                    <form class="navbar-form navbar-left" role="search">
-                        <div class="form-group">
-                            <input id="input" type="text" data-bind="textInput: listInput " placeholder="Search.."> </div>
-                    </form>
-                </div>
-                <div class="row">
+                <button onclick="myFunction('placesList')" id="accordion" class="w3-button w3-block w3-left-align text-uppercase fa fa-chevron-circle-down"> List of places</button>
+                <div id="placesList" class="row w3-hide">
+                    <div class="row">
+                        <form class="navbar-form navbar-left" role="search">
+                            <div class="form-group">
+                                <input id="input" type="text" data-bind="textInput: listInput " placeholder="Search.."> </div>
+                        </form>
+                    </div>
                     <hr>
-                    <ul class="text-uppercase" id="list" data-bind="foreach: searchedNames">
+                    <ul class="text-uppercase w3-ul" id="list" data-bind="foreach: searchedNames">
                         <li>
-                            <a href="#" data-bind="text: title,click: infoList"></a>
+                            <a href="#" class="w3-button w3-block w3-left-align" data-bind="text: title,click: infoList"></a>
                         </li>
                     </ul>
+                </div>
+                <button onclick="myFunction('direction')" id="accordion" class="w3-button w3-block w3-left-align text-uppercase fa fa-chevron-circle-down"> Direction</button>
+                <div id="direction" class="row w3-hide">
+                    <div class="row"> <b>Start: </b>
+                        <select class="text-uppercase w3-ul" id="list" data-bind="foreach: searchedNames">
+                            <option data-bind="text: title,click: infoList"></option>
+                        </select> <b>End: </b>
+                        <select class="text-uppercase w3-ul" id="list" data-bind="foreach: searchedNames">
+                            <option data-bind="text: title,click: infoList"></option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="container-fluid" id="map"></div>
