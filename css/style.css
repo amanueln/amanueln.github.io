@@ -163,7 +163,7 @@ input[type=text]:focus {
 }
 
 .site-nav-wrap {
-    height: 80px;
+    height: 75px;
     float: left;
     overflow: hidden;
     width: 100%;
@@ -206,6 +206,9 @@ h1 {
     width: 100%;
 }
 
+#accordion{
+    color: white;
+}
 
 img {
     width: 50%;
