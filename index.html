@@ -8,6 +8,7 @@
     <title>Nates POI'S</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rancho&effect=shadow-multiple|3d-float">
     <!-- Add icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -30,17 +31,13 @@
             <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header font-effect-3d-float">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">PLACES TO GO</h4> </div>
                     <div class="modal-body">
                         <p>Welcome to places to go. this is a beta app that allows you to see some of the places i visited while on my trip to New York.</p>
                         <p>top left icon will give you a list of places.You can also just click on the markers to get more info.</p>
                         <p>Enjoy!! updates coming soon</p>
-			<ul>
-			  <li>Directions</li>
-			  <li>user sign in</li>
-		        </ul>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -67,10 +64,12 @@
                 </div>
                 <button onclick="myFunction('direction')" id="accordion" class="w3-button w3-block w3-left-align text-uppercase fa fa-chevron-circle-down"> Direction</button>
                 <div id="direction" class="row w3-hide">
-                    <div class="row"> <b>Start: </b>
-                        <select class="text-uppercase w3-ul" id="list" data-bind="foreach: searchedNames">
+                    <div class="row"> 
+                       <b>Start: </b>
+                        <select class="text-center ext-uppercase w3-ul w3-round-small " data-bind="foreach: searchedNames">
                             <option data-bind="text: title,click: infoList"></option>
-                        </select> <b>End: </b>
+                        </select> 
+                        <b>End: </b>
                         <select class="text-uppercase w3-ul" id="list" data-bind="foreach: searchedNames">
                             <option data-bind="text: title,click: infoList"></option>
                         </select>
