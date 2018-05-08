@@ -64,13 +64,13 @@
                 </div>
                 <button onclick="myFunction('direction')" id="accordion" class="w3-button w3-block w3-left-align text-uppercase fa fa-chevron-circle-down"> Direction</button>
                 <div id="direction" class="row w3-hide">
-                    <div class="row"> 
+                    <div class="row w3-ul w3-round-small"> 
                        <b>Start: </b>
-                        <select class="text-center ext-uppercase w3-ul w3-round-small " data-bind="foreach: searchedNames">
+                        <select class="list text-center" data-bind="foreach: searchedNames">
                             <option data-bind="text: title,click: infoList"></option>
                         </select> 
                         <b>End: </b>
-                        <select class="text-uppercase w3-ul" id="list" data-bind="foreach: searchedNames">
+                        <select class="list" data-bind="foreach: searchedNames">
                             <option data-bind="text: title,click: infoList"></option>
                         </select>
                     </div>
